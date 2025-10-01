@@ -4,7 +4,6 @@
 import gleam/dict
 import gleam/list
 import gleam/option.{None, Some}
-import gleam/result
 import gleam/string
 import gleeunit/should
 import solc/types
@@ -409,8 +408,6 @@ pub fn download_load_workflow_test() {
   let mock_download_result: Result(String, types.SolcError) = Ok(version)
   case mock_download_result {
     Ok(downloaded_version) -> should.equal(downloaded_version, version)
-    Error(_) -> should.be_true(True)
-    // Both outcomes valid for test
   }
 
   // Test error handling in download

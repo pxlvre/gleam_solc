@@ -15,7 +15,6 @@ pub fn wrapper_creation_test() {
   let test_result: Result(String, types.SolcError) = Ok("test")
   case test_result {
     Ok(_) -> should.be_true(True)
-    Error(_) -> should.be_true(True)
   }
 
   // Test error types that wrapper would return
