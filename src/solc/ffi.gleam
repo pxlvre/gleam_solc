@@ -1,7 +1,7 @@
 // FFI bindings for Solidity compiler JavaScript integration
 
-import gleam/javascript/promise.{type Promise}
 import gleam/dynamic.{type Dynamic}
+import gleam/javascript/promise.{type Promise}
 
 // External JavaScript module reference type
 pub type SoljsonModule
@@ -17,10 +17,16 @@ pub fn get_solc_version(soljson: SoljsonModule) -> Result(String, String)
 pub fn get_solc_license(soljson: SoljsonModule) -> Result(String, String)
 
 @external(javascript, "../ffi/solc_ffi.mjs", "compile_solidity")
-pub fn compile_solidity(soljson: SoljsonModule, input_json: String) -> Result(String, String)
+pub fn compile_solidity(
+  soljson: SoljsonModule,
+  input_json: String,
+) -> Result(String, String)
 
 @external(javascript, "../ffi/solc_ffi.mjs", "download_solc_release")
-pub fn download_solc_release(url: String, path: String) -> Promise(Result(String, String))
+pub fn download_solc_release(
+  url: String,
+  path: String,
+) -> Promise(Result(String, String))
 
 @external(javascript, "../ffi/solc_ffi.mjs", "fetch_release_list")
 pub fn fetch_release_list() -> Promise(Result(Dynamic, String))

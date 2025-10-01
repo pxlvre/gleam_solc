@@ -9,7 +9,7 @@ pub type SolcVersion =
 
 pub type SolcError {
   DownloadError(String)
-  CompilationFailed(String) 
+  CompilationFailed(String)
   FFIError(String)
   InvalidInput(String)
   VersionNotFound(String)
@@ -23,15 +23,12 @@ pub type Source {
 pub type OutputSelection {
   OutputSelection(
     // File selection -> Contract selection -> Output types
-    selections: Dict(String, Dict(String, List(String)))
+    selections: Dict(String, Dict(String, List(String))),
   )
 }
 
 pub type OptimizerSettings {
-  OptimizerSettings(
-    enabled: Bool,
-    runs: Int
-  )
+  OptimizerSettings(enabled: Bool, runs: Int)
 }
 
 pub type CompilationSettings {
@@ -40,15 +37,16 @@ pub type CompilationSettings {
     optimizer: Option(OptimizerSettings),
     evm_version: Option(String),
     libraries: Option(Dict(String, String)),
-    remappings: Option(List(String))
+    remappings: Option(List(String)),
   )
 }
 
 pub type CompilationInput {
   CompilationInput(
-    language: String, // "Solidity"
+    language: String,
+    // "Solidity"
     sources: Dict(String, Source),
-    settings: CompilationSettings
+    settings: CompilationSettings,
   )
 }
 
@@ -58,23 +56,12 @@ pub type ABIType {
     name: String,
     inputs: List(ABIParameter),
     outputs: List(ABIParameter),
-    state_mutability: String
+    state_mutability: String,
   )
-  ABIEvent(
-    name: String,
-    inputs: List(ABIParameter),
-    anonymous: Bool
-  )
-  ABIConstructor(
-    inputs: List(ABIParameter),
-    state_mutability: String
-  )
-  ABIFallback(
-    state_mutability: String
-  )
-  ABIReceive(
-    state_mutability: String
-  )
+  ABIEvent(name: String, inputs: List(ABIParameter), anonymous: Bool)
+  ABIConstructor(inputs: List(ABIParameter), state_mutability: String)
+  ABIFallback(state_mutability: String)
+  ABIReceive(state_mutability: String)
 }
 
 pub type ABIParameter {
@@ -82,37 +69,31 @@ pub type ABIParameter {
     name: String,
     type_: String,
     internal_type: String,
-    indexed: Option(Bool)
+    indexed: Option(Bool),
   )
 }
 
 pub type LinkReference {
-  LinkReference(
-    start: Int,
-    length: Int
-  )
+  LinkReference(start: Int, length: Int)
 }
 
 pub type Bytecode {
   Bytecode(
     object: String,
     link_references: Dict(String, List(LinkReference)),
-    source_map: Option(String)
+    source_map: Option(String),
   )
 }
 
 pub type GasEstimates {
-  GasEstimates(
-    creation: Option(CreationGas),
-    external: Dict(String, String)
-  )
+  GasEstimates(creation: Option(CreationGas), external: Dict(String, String))
 }
 
 pub type CreationGas {
   CreationGas(
     code_deposit_cost: String,
     execution_cost: String,
-    total_cost: String
+    total_cost: String,
   )
 }
 
@@ -121,48 +102,38 @@ pub type EVM {
     bytecode: Bytecode,
     deployed_bytecode: Option(Bytecode),
     gas_estimates: Option(GasEstimates),
-    method_identifiers: Dict(String, String)
+    method_identifiers: Dict(String, String),
   )
 }
 
 pub type Contract {
-  Contract(
-    abi: List(ABIType),
-    evm: EVM,
-    metadata: String
-  )
+  Contract(abi: List(ABIType), evm: EVM, metadata: String)
 }
 
 pub type SourceInfo {
-  SourceInfo(
-    id: Int,
-    ast: Option(Json)
-  )
+  SourceInfo(id: Int, ast: Option(Json))
 }
 
 pub type CompilationError {
   CompilationError(
-    severity: String, // "error", "warning", "info"
+    severity: String,
+    // "error", "warning", "info"
     message: String,
     formatted_message: Option(String),
     source_location: Option(SourceLocation),
-    error_code: Option(String)
+    error_code: Option(String),
   )
 }
 
 pub type SourceLocation {
-  SourceLocation(
-    file: String,
-    start: Int,
-    end: Int
-  )
+  SourceLocation(file: String, start: Int, end: Int)
 }
 
 pub type CompilationOutput {
   CompilationOutput(
     sources: Option(Dict(String, SourceInfo)),
     contracts: Option(Dict(String, Dict(String, Contract))),
-    errors: Option(List(CompilationError))
+    errors: Option(List(CompilationError)),
   )
 }
 
@@ -171,6 +142,6 @@ pub type SolcWrapper {
   SolcWrapper(
     version: fn() -> String,
     license: fn() -> String,
-    compile: fn(String) -> Result(CompilationOutput, SolcError)
+    compile: fn(String) -> Result(CompilationOutput, SolcError),
   )
 }

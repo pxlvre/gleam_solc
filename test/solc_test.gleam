@@ -1,8 +1,8 @@
-import gleeunit
-import unit_test
-import integration_test
 import end_to_end_test
+import gleeunit
+import integration_test
 import performance_test
+import unit_test
 
 pub fn main() -> Nil {
   gleeunit.main()
