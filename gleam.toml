@@ -1,0 +1,17 @@
+name = "solc"
+version = "0.1.0"
+description = "Gleam bindings for the Solidity compiler with support for multiple contracts, inheritance, and comprehensive error handling"
+licences = ["MIT"]
+repository = { type = "github", user = "pxlvre", repo = "gleam_solc" }
+links = [
+  { title = "Repository", href = "https://github.com/pxlvre/gleam_solc" },
+  { title = "Documentation", href = "https://github.com/pxlvre/gleam_solc#readme" }
+]
+
+[dependencies]
+gleam_stdlib = ">= 0.65.0 and < 1.0.0"
+gleam_json = ">= 3.0.0 and < 4.0.0"  
+gleam_javascript = ">= 0.13.0 and < 1.0.0"
+
+[dev-dependencies]
+gleeunit = ">= 1.6.0 and < 2.0.0"
