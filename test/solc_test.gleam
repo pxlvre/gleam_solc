@@ -1,26 +1,24 @@
 import gleeunit
-import basic_test
+import unit_test
 import integration_test
+import end_to_end_test
+import performance_test
 
 pub fn main() -> Nil {
   gleeunit.main()
 }
 
 // Re-export basic tests
+pub fn types_test() {
+  unit_test.types_test()
+}
+
 pub fn error_types_test() {
-  basic_test.error_types_test()
+  unit_test.error_types_test()
 }
 
 pub fn compilation_input_test() {
-  basic_test.compilation_input_test()
-}
-
-pub fn compilation_output_test() {
-  basic_test.compilation_output_test()
-}
-
-pub fn compilation_error_test() {
-  basic_test.compilation_error_test()
+  unit_test.compilation_input_test()
 }
 
 // Integration tests - comprehensive scenarios
@@ -54,4 +52,46 @@ pub fn bytecode_structure_test() {
 
 pub fn evm_structure_test() {
   integration_test.evm_structure_test()
+}
+
+// End-to-end tests - complete workflow scenarios
+pub fn complete_compilation_workflow_test() {
+  end_to_end_test.complete_compilation_workflow_test()
+}
+
+pub fn expected_compilation_output_test() {
+  end_to_end_test.expected_compilation_output_test()
+}
+
+pub fn compilation_error_scenarios_test() {
+  end_to_end_test.compilation_error_scenarios_test()
+}
+
+pub fn download_load_workflow_test() {
+  end_to_end_test.download_load_workflow_test()
+}
+
+// Performance benchmarks
+pub fn type_construction_benchmark() {
+  performance_test.type_construction_benchmark()
+}
+
+pub fn large_input_benchmark() {
+  performance_test.large_input_benchmark()
+}
+
+pub fn multi_file_benchmark() {
+  performance_test.multi_file_benchmark()
+}
+
+pub fn abi_construction_benchmark() {
+  performance_test.abi_construction_benchmark()
+}
+
+pub fn error_handling_benchmark() {
+  performance_test.error_handling_benchmark()
+}
+
+pub fn json_encoding_benchmark() {
+  performance_test.json_encoding_benchmark()
 }
